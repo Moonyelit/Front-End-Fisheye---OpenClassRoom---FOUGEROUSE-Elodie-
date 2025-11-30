@@ -8,4 +8,11 @@
 
 main {
     padding: 3rem 0;
+
+    .photographer-section {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4rem 3rem;
+        justify-items: center;
+    }
 }
