@@ -1,0 +1,25 @@
+/********************************** Variable **********************************/
+:root {
+    --font-default: "DM Sans", sans-serif;
+  
+    /*Borders radius*/
+    --border-radius-primary: 5px;
+  
+    /* Couleurs principales */
+    --color-primary: #901C1C;
+    --color-secondary: #FFFFFF;
+    --color-tertiary: #DB8876;
+    --color-quaternary: #FAFAFA;
+    
+    /* Couleurs de texte */
+    --color-text-primary: #D3573C;
+    --color-text-secondary: #901C1C;
+    --color-text-grey: #525252;
+    --color-text-white: #FFFFFF;
+    --color-text-black: #000;    
+    
+ 
+    /* Couleurs d'état */
+    --color-accessibility: #901C1C;
+  }
+  

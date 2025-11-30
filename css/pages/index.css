@@ -1,0 +1,11 @@
+/* Pages */
+@import "../base/main.css";
+
+/* Composants */
+@import "../composants/header.css";
+@import "../composants/card-home.css";
+
+
+main {
+    padding: 3rem 0;
+}

@@ -1,0 +1,7 @@
+/********************************** Typographie **********************************/
+body,
+html {
+    font-family: var(--font-default);
+    font-weight: 400;
+}
+

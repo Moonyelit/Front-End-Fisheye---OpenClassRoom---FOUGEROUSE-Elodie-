@@ -1,0 +1,17 @@
+/*component*/ 
+.button {
+    background: var(--color-primary);
+    padding: 1rem 0.5rem;
+    color: var(--color-text-white);
+    border-radius: var(--border-radius-primary);
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    transition: all 0.7s ease;
+  }
+
+  .button:hover { 
+    background: var(--color-tertiary);
+    color: var(--color-text-black);
+  }
