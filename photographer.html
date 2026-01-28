@@ -16,27 +16,60 @@
     </header>
 
     <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <div class="photograph-header" id="photograph-header">
+        <!-- Contenu généré dynamiquement -->
+      </div>
+
+      <div class="media-sorter">
+        <label for="sort-select" class="sort-label">Trier par</label>
+        <select id="sort-select" class="sort-select" aria-label="Trier les médias">
+          <option value="popularity">Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
+        </select>
+      </div>
+
+      <div class="media-gallery" id="media-gallery">
+        <!-- Contenu généré dynamiquement -->
       </div>
     </main>
+ 
+    <div class="sticky-footer" id="sticky-footer">
+      <!-- Contenu généré dynamiquement -->
+    </div>
 
-    <div id="contact_modal">
+    <div id="contact_modal" class="modal-overlay">
       <div class="modal">
         <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" alt="Fermer la modale" />
+          <h2 id="modal-title button">Contactez-moi</h2>
+          <button class="modal-close" onclick="closeModal()" aria-label="Fermer la modale">
+            <img src="assets/icons/close.svg" alt="Fermer" />
+          </button>
         </header>
         <form>
           <div>
-            <label>Prénom</label>
-            <input />
+            <label for="firstname">Prénom</label>
+            <input type="text" id="firstname" name="firstname" required />
           </div>
-          <button class="contact_button">Envoyer</button>
+          <div>
+            <label for="lastname">Nom</label>
+            <input type="text" id="lastname" name="lastname" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div>
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="contact_button">Envoyer</button>
         </form>
       </div>
     </div>
 
+    <script src="scripts/templates/photographer.js"></script>
+    <script src="scripts/templates/media.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
   </body>
