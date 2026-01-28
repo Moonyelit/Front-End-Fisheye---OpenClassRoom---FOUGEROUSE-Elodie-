@@ -1,0 +1,41 @@
+/* Barre fixe en bas */
+.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    right: 2rem;
+    background-color: var(--color-tertiary);
+    padding: 1.5rem 2rem;
+    border-radius: var(--border-radius-primary) var(--border-radius-primary) 0 0;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    z-index: 100;
+}
+
+.total-likes {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.total-likes-count {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-black);
+}
+
+.photographer-price-footer {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-black);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sticky-footer {
+        right: 0;
+        left: 0;
+        border-radius: 0;
+        justify-content: space-around;
+    }
+}

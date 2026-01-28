@@ -1,0 +1,70 @@
+/* Header du photographe */
+.photograph-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-quaternary);
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius-primary);
+}
+
+.photographer-info {
+    flex: 1;
+}
+
+.photograph-header .photographer-name {
+    font-size: 4rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin: 0 0 1rem 0;
+}
+
+.photographer-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.photograph-header .photographer-location {
+    font-size: 1.5rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.photograph-header .photographer-tagline {
+    font-size: 1.125rem;
+    color: var(--color-text-grey);
+    margin: 0;
+}
+
+.photograph-header .contact_button {
+    margin: 0 2rem;
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+}
+
+.photograph-header .photographer-portrait {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .photograph-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .photograph-header .photographer-portrait {
+        align-self: center;
+    }
+
+    .photograph-header .contact_button {
+        margin: 0;
+        width: 100%;
+    }
+}

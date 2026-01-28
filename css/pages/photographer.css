@@ -4,4 +4,9 @@
 /* Composants */
 @import "../composants/header.css";
 @import "../composants/button.css";
+@import "../composants/photographer-header.css";
+@import "../composants/media-sorter.css";
+@import "../composants/media-gallery.css";
+@import "../composants/sticky-footer.css";
+@import "../composants/modal.css";
 
