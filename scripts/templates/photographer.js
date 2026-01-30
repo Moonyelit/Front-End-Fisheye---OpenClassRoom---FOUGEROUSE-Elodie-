@@ -4,44 +4,47 @@ function photographerTemplate(data) {
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
-        const article = document.createElement( 'article' );
+        const article = document.createElement('article');
         article.className = "card-home";
         
-        // Lien vers la page du photographe (englobe toute la carte)
-        const link = document.createElement( 'a' );
+        // Lien vers la page du photographe (contient l'image ET le h2)
+        // Selon les specs d'accessibilité : le lien est une zone focusable contenant le h2 et l'image
+        const link = document.createElement('a');
         link.href = `photographer.html?id=${id}`;
-        link.setAttribute("aria-label", `Voir le profil de ${name}`);
         link.className = "card-link";
+        // Le nom accessible est fourni par le h2 à l'intérieur du lien
         
-        // Image circulaire (photographer-portrait)
-        const img = document.createElement( 'img' );
+        // Image circulaire - alt vide car le nom est dans le h2 (évite la redondance)
+        const img = document.createElement('img');
         img.setAttribute("src", picture);
-        img.setAttribute("alt", `Portrait de ${name}`);
+        img.setAttribute("alt", ""); // Image décorative, le nom est dans le h2
         img.className = "photographer-portrait";
         
-        // Nom (photographe-name)
-        const h2 = document.createElement( 'h2' );
+        // Nom (photographer-name) - fournit le nom accessible au lien
+        const h2 = document.createElement('h2');
         h2.textContent = name;
         h2.className = "photographer-name";
         
-        // Localisation (ville, pays - photographer-location)
-        const location = document.createElement( 'p' );
+        // Assemblage du lien (image + h2)
+        link.appendChild(img);
+        link.appendChild(h2);
+        
+        // Localisation (texte statique)
+        const location = document.createElement('p');
         location.textContent = `${city}, ${country}`;
         location.className = "photographer-location";
         
-        // Tagline (photographer-tagline)
-        const taglineElement = document.createElement( 'p' );
+        // Tagline (texte statique)
+        const taglineElement = document.createElement('p');
         taglineElement.textContent = tagline;
         taglineElement.className = "photographer-tagline";
         
-        // Prix (photographer-price)
-        const priceElement = document.createElement( 'p' );
+        // Prix (texte statique)
+        const priceElement = document.createElement('p');
         priceElement.textContent = `${price}€/jour`;
         priceElement.className = "photographer-price";
         
-        // Assemblage des éléments
-        link.appendChild(h2);
-        article.appendChild(img);
+        // Assemblage de l'article
         article.appendChild(link);
         article.appendChild(location);
         article.appendChild(taglineElement);

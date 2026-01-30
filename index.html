@@ -3,21 +3,26 @@
   <head>
     <link href="css/pages/index.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fisheye - Trouvez votre photographe professionnel parmi notre sélection de talents">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye</title>
+    <title>Fisheye - Accueil</title>
   </head>
 
   <body>
-    <header>
-        <a href="index.html" aria-label="Retour à l'accueil">
-            <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
+    <!-- Skip link pour l'accessibilité -->
+    <a href="#main" class="skip-link">Passer au contenu</a>
+
+    <header role="banner">
+        <a href="index.html" class="logo-link" aria-label="Fisheye Home page">
+            <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
         </a>
         <h1>Nos photographes</h1>
     </header>
 
-    <main id="main">
-        <div class="photographer-section"></div>
+    <main id="main" role="main">
+        <div class="photographer-section" aria-label="Liste des photographes"></div>
     </main>
     
     <script src="scripts/utils/loader.js"></script>

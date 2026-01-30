@@ -7,32 +7,33 @@
     width: 100%;
     max-width: 350px;
     position: relative;
+}
+
+/* Lien vers la page du photographe - contient l'image et le h2 */
+.card-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    border-radius: var(--border-radius-primary);
     transition: transform 0.4s ease;
 }
 
-.card-home:hover {
-    transform: translateY(-10px) scale(1.02);
+.card-link:hover {
+    transform: translateY(-5px);
 }
 
-/* Lien vers la page du photographe */
-.card-link {
-    text-decoration: none;
-    display: inline-block;
+/* Focus accessible sur le lien - carré englobant toute la carte */
+.card-link:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 5px;
+    border-radius: var(--border-radius-primary);
 }
 
-.card-home .card-link::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-}
-
-/* Image */
-.photographer-portrait {
+/* Image - dans le lien */
+.card-link .photographer-portrait {
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -41,13 +42,14 @@
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.card-home:hover .photographer-portrait {
+.card-link:hover .photographer-portrait,
+.card-link:focus-visible .photographer-portrait {
     transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Nom */
-.photographer-name {
+/* Nom - dans le lien */
+.card-link .photographer-name {
     font-size: 2.25rem;
     font-weight: 400;
     color: var(--color-text-primary);
@@ -55,7 +57,8 @@
     transition: color 0.4s ease;
 }
 
-.card-home:hover .photographer-name {
+.card-link:hover .photographer-name,
+.card-link:focus-visible .photographer-name {
     color: var(--color-text-secondary);
 }
 
