@@ -129,35 +129,41 @@ function createLightboxHTML() {
     const lightbox = document.createElement('div');
     lightbox.id = 'lightbox';
     lightbox.className = 'lightbox-overlay';
+    // #1 - Dialog avec aria-label="Image closeup view"
     lightbox.setAttribute('role', 'dialog');
     lightbox.setAttribute('aria-modal', 'true');
-    lightbox.setAttribute('aria-label', 'Visionneuse de médias');
+    lightbox.setAttribute('aria-label', 'Image closeup view');
     lightbox.setAttribute('aria-hidden', 'true');
     
     lightbox.innerHTML = `
         <div class="lightbox-content" role="document">
-            <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fermer la visionneuse">
+            <!-- #6 - Button: Ferme la fenêtre de dialogue - "Close dialog" -->
+            <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close dialog">
                 <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="#901C1C"/>
                 </svg>
             </button>
             
-            <button class="lightbox-nav lightbox-prev" onclick="previousMedia()" aria-label="Image précédente">
+            <!-- #4 - Link: Va à l'image précédente - "Previous image" -->
+            <a href="#" class="lightbox-nav lightbox-prev" onclick="previousMedia(); return false;" aria-label="Previous image" role="link">
                 <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M29.6399 42.36L11.3199 24L29.6399 5.64L23.9999 0L-0.000106812 24L23.9999 48L29.6399 42.36Z" fill="#901C1C"/>
                 </svg>
-            </button>
+            </a>
             
             <figure class="lightbox-figure">
-                <div class="lightbox-media-container" role="img" aria-live="polite"></div>
+                <!-- #2 - Image: Image statique avec alt = titre du média -->
+                <div class="lightbox-media-container" aria-live="polite"></div>
+                <!-- #3 - Text: Texte statique (titre) -->
                 <figcaption class="lightbox-title" id="lightbox-title"></figcaption>
             </figure>
             
-            <button class="lightbox-nav lightbox-next" onclick="nextMedia()" aria-label="Image suivante">
+            <!-- #5 - Link: Va à l'image suivante - "Next image" -->
+            <a href="#" class="lightbox-nav lightbox-next" onclick="nextMedia(); return false;" aria-label="Next image" role="link">
                 <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M0.360107 42.36L18.6801 24L0.360107 5.64L6.00011 0L30.0001 24L6.00011 48L0.360107 42.36Z" fill="#901C1C"/>
                 </svg>
-            </button>
+            </a>
         </div>
     `;
     
@@ -173,9 +179,10 @@ function createLightboxHTML() {
     // Focus trap - garder le focus dans la lightbox
     lightbox.addEventListener('keydown', (e) => {
         if (e.key === 'Tab') {
-            const focusableElements = lightbox.querySelectorAll('button:not([disabled])');
-            const firstElement = focusableElements[0];
-            const lastElement = focusableElements[focusableElements.length - 1];
+            const focusableElements = lightbox.querySelectorAll('button, a[href]');
+            const focusArray = Array.from(focusableElements);
+            const firstElement = focusArray[0];
+            const lastElement = focusArray[focusArray.length - 1];
             
             if (e.shiftKey && document.activeElement === firstElement) {
                 e.preventDefault();
