@@ -11,38 +11,47 @@ function createContactModal() {
     const modal = document.createElement('div');
     modal.id = 'contact_modal';
     modal.className = 'modal-overlay';
+    // #1 - Dialog avec aria-labelledby pointant vers le titre
     modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
     modal.setAttribute('aria-labelledby', 'modal-title');
     modal.setAttribute('aria-hidden', 'true');
     
     modal.innerHTML = `
-        <div class="modal">
+        <div class="modal" role="document">
             <header>
+                <!-- #2 - Heading: Titre avec le nom du photographe -->
                 <h2 id="modal-title">Contactez-moi</h2>
-                <button class="modal-close" aria-label="Fermer la modale">
-                    <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="#901C1C"/>
+                <!-- #12 - Button: Ferme la modale - "Close Contact form" -->
+                <button class="modal-close" aria-label="Close Contact form">
+                    <svg width="24" height="24" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="currentColor"/>
                     </svg>
                 </button>
             </header>
             <form id="contact-form">
+                <!-- #3 - Label: Prénom, #4 - Text field: Input Prénom -->
                 <div class="form-group">
-                    <label for="firstname">Prénom</label>
-                    <input type="text" id="firstname" name="firstname" autocomplete="given-name" required />
+                    <label for="firstname" id="label-firstname">Prénom</label>
+                    <input type="text" id="firstname" name="firstname" aria-labelledby="label-firstname" autocomplete="given-name" required />
                 </div>
+                <!-- #5 - Label: Nom, #6 - Text field: Input Nom -->
                 <div class="form-group">
-                    <label for="lastname">Nom</label>
-                    <input type="text" id="lastname" name="lastname" autocomplete="family-name" required />
+                    <label for="lastname" id="label-lastname">Nom</label>
+                    <input type="text" id="lastname" name="lastname" aria-labelledby="label-lastname" autocomplete="family-name" required />
                 </div>
+                <!-- #7 - Label: Email, #8 - Text field: Input Email -->
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" autocomplete="email" required />
+                    <label for="email" id="label-email">Email</label>
+                    <input type="email" id="email" name="email" aria-labelledby="label-email" autocomplete="email" required />
                 </div>
+                <!-- #9 - Label: Message, #10 - Text field: Input Message -->
                 <div class="form-group">
-                    <label for="message">Votre message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <label for="message" id="label-message">Votre message</label>
+                    <textarea id="message" name="message" aria-labelledby="label-message" rows="5" required></textarea>
                 </div>
-                <button type="submit" class="contact_button button">Envoyer</button>
+                <!-- #11 - Button: Envoie le formulaire - "Send" -->
+                <button type="submit" class="contact_button button" aria-label="Send">Envoyer</button>
             </form>
         </div>
     `;
@@ -73,6 +82,26 @@ function setupModalEvents(modal) {
     if (form) {
         form.addEventListener('submit', handleFormSubmit);
     }
+    
+    // Focus trap - garder le focus dans la modale
+    modal.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            const focusableElements = modal.querySelectorAll(
+                'button:not([disabled]), input:not([disabled]), textarea:not([disabled])'
+            );
+            const focusArray = Array.from(focusableElements);
+            const firstElement = focusArray[0];
+            const lastElement = focusArray[focusArray.length - 1];
+            
+            if (e.shiftKey && document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
+    });
 }
 
 // Afficher la modale
@@ -85,6 +114,14 @@ function displayModal(recipientName = '') {
     
     // Stocker le nom du destinataire (pour l'envoi du formulaire)
     contactRecipientName = recipientName;
+    
+    // #2 - Mettre à jour le titre avec le nom du photographe
+    const modalTitle = modal.querySelector('#modal-title');
+    if (modalTitle && recipientName) {
+        modalTitle.textContent = `Contactez-moi ${recipientName}`;
+    } else if (modalTitle) {
+        modalTitle.textContent = 'Contactez-moi';
+    }
     
     // Afficher la modale
     modal.style.display = 'flex';

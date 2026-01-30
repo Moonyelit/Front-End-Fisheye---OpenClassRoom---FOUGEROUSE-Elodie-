@@ -19,17 +19,46 @@
 .modal {
     background-color: var(--color-tertiary);
     border-radius: var(--border-radius-primary);
-    padding: 2rem;
+    padding: 2.5rem;
     max-width: 600px;
     width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
     position: relative;
+}
+
+/* Scrollbar personnalisée */
+.modal::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 10px;
+    border: 2px solid var(--color-tertiary);
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+    background: #7a1818;
+}
+
+/* Firefox scrollbar */
+.modal {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) rgba(0, 0, 0, 0.05);
 }
 
 .modal header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
 .modal header h2 {
@@ -37,8 +66,11 @@
     font-weight: 400;
     color: var(--color-text-black);
     margin: 0;
+    line-height: 1.1;
+    flex: 1;
 }
 
+/* #12 - Button: Close Contact form */
 .modal-close {
     background: none;
     border: none;
@@ -47,16 +79,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%;
+    color: var(--color-text-black);
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
 }
 
 .modal-close:hover {
-    opacity: 0.7;
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+    color: var(--color-primary);
 }
 
-.modal-close:focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-    border-radius: 2px;
+.modal-close:hover svg {
+    transform: rotate(90deg);
+}
+
+.modal-close svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+
+.modal-close:focus-visible {
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 3px var(--color-primary);
 }
 
 .modal form {
@@ -77,24 +125,50 @@
     color: var(--color-text-black);
 }
 
+/* #4, #6, #8, #10 - Text fields */
 .modal form input,
 .modal form textarea {
     padding: 0.75rem;
-    border: none;
+    border: 2px solid transparent;
     border-radius: var(--border-radius-primary);
     font-size: 1.25rem;
     font-family: var(--font-default);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .modal form input:focus,
 .modal form textarea:focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(144, 28, 28, 0.2);
 }
 
+.modal form input:focus-visible,
+.modal form textarea:focus-visible {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(144, 28, 28, 0.2);
+}
+
+/* #11 - Button: Send */
 .modal form .contact_button {
     align-self: flex-start;
     margin-top: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal form .contact_button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(144, 28, 28, 0.3);
+}
+
+.modal form .contact_button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-primary), 0 4px 12px rgba(144, 28, 28, 0.3);
+}
+
+.modal form .contact_button:active {
+    transform: translateY(0);
 }
 
 /* Notification de confirmation */
@@ -133,10 +207,21 @@
     .modal {
         width: 95%;
         padding: 1.5rem;
+        max-height: 85vh;
+    }
+
+    .modal header {
+        gap: 0.75rem;
     }
 
     .modal header h2 {
-        font-size: 2.5rem;
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+
+    .modal-close svg {
+        width: 20px;
+        height: 20px;
     }
 
     .contact-notification {
