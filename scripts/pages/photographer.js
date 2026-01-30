@@ -4,6 +4,9 @@ function getPhotographerId() {
     return parseInt(params.get('id'));
 }
 
+// Variable globale pour stocker les médias (utilisée par la lightbox)
+let currentMediaList = [];
+
 // Récupération des données
 async function getPhotographers() {
     try {
@@ -47,10 +50,21 @@ function displayMedia(mediaArray) {
     if (!gallery) return;
 
     gallery.innerHTML = "";
+    currentMediaList = mediaArray; // Stocker pour la lightbox
 
-    mediaArray.forEach((media) => {
+    mediaArray.forEach((media, index) => {
         const mediaModel = mediaTemplate(media);
         const mediaCard = mediaModel.getMediaCardDOM();
+        
+        // Ajouter l'événement de clic pour ouvrir la lightbox
+        const mediaLink = mediaCard.querySelector('.media-link');
+        if (mediaLink) {
+            mediaLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                openLightbox(currentMediaList, index);
+            });
+        }
+        
         gallery.appendChild(mediaCard);
     });
 }
