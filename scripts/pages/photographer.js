@@ -7,6 +7,9 @@ function getPhotographerId() {
 // Variable globale pour stocker les médias (utilisée par la lightbox)
 let currentMediaList = [];
 
+// Variable globale pour stocker le photographe actuel
+let currentPhotographer = null;
+
 // Récupération des données
 async function getPhotographers() {
     try {
@@ -39,7 +42,7 @@ function displayPhotographerHeader(photographer) {
                 <p class="photographer-tagline">${tagline}</p>
             </div>
         </div>
-        <button class="contact_button button " onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button button" onclick="displayModal(currentPhotographer?.name || '')">Contactez-moi</button>
         <img src="${picture}" alt="${name}" class="photographer-portrait" />
     `;
 }
@@ -140,6 +143,9 @@ async function init() {
         console.error("Photographe non trouvé");
         return;
     }
+    
+    // Stocker le photographe pour l'utiliser dans displayModal
+    currentPhotographer = photographer;
 
     // Filtrer les médias du photographe
     const photographerMedia = media.filter(m => m.photographerId === photographerId);
@@ -163,12 +169,6 @@ async function init() {
             displayMedia(sorted);
             updateTotalLikes();
         });
-    }
-
-    // Mettre à jour le titre de la modale
-    const modalTitle = document.getElementById("modal-title");
-    if (modalTitle) {
-        modalTitle.textContent = `Contactez-moi ${photographer.name}`;
     }
 }
 
