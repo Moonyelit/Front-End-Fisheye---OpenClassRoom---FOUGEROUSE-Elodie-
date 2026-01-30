@@ -34,6 +34,9 @@ function displayPhotographerHeader(photographer) {
     // Les portraits sont dans assets/photographers/
     const picture = `assets/photographers/${portrait}`;
 
+    // Mettre à jour le titre de la page avec le nom du photographe
+    document.title = `Fisheye - ${name}`;
+
     headerSection.innerHTML = `
         <div class="photographer-info">
             <h1 class="photographer-name">${name}</h1>
@@ -42,7 +45,7 @@ function displayPhotographerHeader(photographer) {
                 <p class="photographer-tagline">${tagline}</p>
             </div>
         </div>
-        <button class="contact_button button" onclick="displayModal(currentPhotographer?.name || '')">Contactez-moi</button>
+        <button class="contact_button button" onclick="displayModal(currentPhotographer?.name || '')" aria-label="Contactez-moi">Contactez-moi</button>
         <img src="${picture}" alt="${name}" class="photographer-portrait" />
     `;
 }
@@ -118,10 +121,12 @@ function displayStickyFooter(photographer) {
     
     footer.innerHTML = `
         <div class="total-likes">
-            <span class="total-likes-count">0</span>
-            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.5 18.35L8.23125 17.03C3.725 12.36 0.75 9.28 0.75 5.5C0.75 2.42 2.8675 0 5.5625 0C7.085 0 8.54625 0.81 9.5 2.09C10.4537 0.81 11.915 0 13.4375 0C16.1325 0 18.25 2.42 18.25 5.5C18.25 9.28 15.275 12.36 10.7688 17.04L9.5 18.35Z" fill="#FFFFFF"/>
-            </svg>
+            <span class="total-likes-count" aria-live="polite">0</span>
+            <span class="likes-icon" aria-label="likes" role="img">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M9.5 18.35L8.23125 17.03C3.725 12.36 0.75 9.28 0.75 5.5C0.75 2.42 2.8675 0 5.5625 0C7.085 0 8.54625 0.81 9.5 2.09C10.4537 0.81 11.915 0 13.4375 0C16.1325 0 18.25 2.42 18.25 5.5C18.25 9.28 15.275 12.36 10.7688 17.04L9.5 18.35Z" fill="#FFFFFF"/>
+                </svg>
+            </span>
         </div>
         <div class="photographer-price-footer">${price}€ / jour</div>
     `;

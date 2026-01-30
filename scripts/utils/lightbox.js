@@ -130,30 +130,31 @@ function createLightboxHTML() {
     lightbox.id = 'lightbox';
     lightbox.className = 'lightbox-overlay';
     lightbox.setAttribute('role', 'dialog');
+    lightbox.setAttribute('aria-modal', 'true');
     lightbox.setAttribute('aria-label', 'Visionneuse de médias');
     lightbox.setAttribute('aria-hidden', 'true');
     
     lightbox.innerHTML = `
-        <div class="lightbox-content">
+        <div class="lightbox-content" role="document">
             <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fermer la visionneuse">
-                <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="#901C1C"/>
                 </svg>
             </button>
             
-            <button class="lightbox-nav lightbox-prev" onclick="previousMedia()" aria-label="Média précédent">
-                <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button class="lightbox-nav lightbox-prev" onclick="previousMedia()" aria-label="Image précédente">
+                <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M29.6399 42.36L11.3199 24L29.6399 5.64L23.9999 0L-0.000106812 24L23.9999 48L29.6399 42.36Z" fill="#901C1C"/>
                 </svg>
             </button>
             
             <figure class="lightbox-figure">
-                <div class="lightbox-media-container"></div>
-                <figcaption class="lightbox-title"></figcaption>
+                <div class="lightbox-media-container" role="img" aria-live="polite"></div>
+                <figcaption class="lightbox-title" id="lightbox-title"></figcaption>
             </figure>
             
-            <button class="lightbox-nav lightbox-next" onclick="nextMedia()" aria-label="Média suivant">
-                <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button class="lightbox-nav lightbox-next" onclick="nextMedia()" aria-label="Image suivante">
+                <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M0.360107 42.36L18.6801 24L0.360107 5.64L6.00011 0L30.0001 24L6.00011 48L0.360107 42.36Z" fill="#901C1C"/>
                 </svg>
             </button>
@@ -166,6 +167,23 @@ function createLightboxHTML() {
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) {
             closeLightbox();
+        }
+    });
+    
+    // Focus trap - garder le focus dans la lightbox
+    lightbox.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            const focusableElements = lightbox.querySelectorAll('button:not([disabled])');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+            
+            if (e.shiftKey && document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
         }
     });
 }

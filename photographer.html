@@ -3,40 +3,47 @@
   <head>
     <link href="css/pages/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fisheye - Découvrez le portfolio et contactez ce photographe professionnel">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe</title>
+    <title>Fisheye - Photographe</title>
   </head>
 
   <body>
-    <header>
-      <a href="index.html" aria-label="Retour à l'accueil">
-        <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
+    <!-- Skip link pour l'accessibilité -->
+    <a href="#main" class="skip-link">Passer au contenu</a>
+
+    <header role="banner">
+      <a href="index.html" class="logo-link" aria-label="Fisheye Home page">
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
       </a>
     </header>
 
-    <main id="main">
-      <div class="photograph-header" id="photograph-header">
+    <main id="main" role="main">
+      <section class="photograph-header" id="photograph-header" aria-label="Informations du photographe">
         <!-- Contenu généré dynamiquement -->
-      </div>
+      </section>
 
-      <div class="media-sorter">
-        <label for="sort-select" class="sort-label">Trier par</label>
-        <select id="sort-select" class="sort-select" aria-label="Trier les médias">
-          <option value="popularity">Popularité</option>
-          <option value="date">Date</option>
-          <option value="title">Titre</option>
-        </select>
-      </div>
+      <section class="media-section" aria-label="Galerie de médias">
+        <div class="media-sorter">
+          <label for="sort-select" class="sort-label" id="sort-label">Trier par</label>
+          <select id="sort-select" class="sort-select" aria-labelledby="sort-label">
+            <option value="popularity">Popularité</option>
+            <option value="date">Date</option>
+            <option value="title">Titre</option>
+          </select>
+        </div>
 
-      <div class="media-gallery" id="media-gallery">
-        <!-- Contenu généré dynamiquement -->
-      </div>
+        <div class="media-gallery" id="media-gallery" role="list" aria-label="Liste des médias">
+          <!-- Contenu généré dynamiquement -->
+        </div>
+      </section>
     </main>
  
-    <div class="sticky-footer" id="sticky-footer">
+    <aside class="sticky-footer" id="sticky-footer" aria-label="Statistiques du photographe">
       <!-- Contenu généré dynamiquement -->
-    </div>
+    </aside>
 
     <!-- Modale de contact générée dynamiquement par contactForm.js -->
 

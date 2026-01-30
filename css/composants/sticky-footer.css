@@ -24,6 +24,11 @@
     color: var(--color-text-black);
 }
 
+.likes-icon {
+    display: flex;
+    align-items: center;
+}
+
 .photographer-price-footer {
     font-size: 1.5rem;
     font-weight: 700;
