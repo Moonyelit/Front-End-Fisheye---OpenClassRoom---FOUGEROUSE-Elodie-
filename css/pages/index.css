@@ -4,6 +4,7 @@
 /* Composants */
 @import "../composants/header.css";
 @import "../composants/card-home.css";
+@import "../composants/loader.css";
 
 
 main {
