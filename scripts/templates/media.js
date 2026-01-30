@@ -57,6 +57,18 @@ function mediaTemplate(data) {
             videoElement.className = "media-video";
             videoElement.setAttribute("aria-label", title);
             mediaContainer.appendChild(videoElement);
+            
+            // Ajouter l'icône play pour indiquer que c'est une vidéo
+            const playIcon = document.createElement('div');
+            playIcon.className = "video-play-icon";
+            playIcon.innerHTML = `
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="30" fill="rgba(255, 255, 255, 0.8)"/>
+                    <path d="M24 18L44 30L24 42V18Z" fill="#901C1C"/>
+                </svg>
+            `;
+            playIcon.setAttribute("aria-hidden", "true");
+            mediaContainer.appendChild(playIcon);
         }
 
         link.appendChild(mediaContainer);
