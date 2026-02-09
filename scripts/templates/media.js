@@ -1,3 +1,5 @@
+/* global updateTotalLikes */
+/* exported mediaTemplate, photographerFolderMap, normalizeFileName */
 // Mapping entre les IDs des photographes et les noms des dossiers dans assets/photos
 const photographerFolderMap = {
     82: "Tracy",
@@ -20,7 +22,7 @@ function normalizeFileName(fileName) {
 }
 
 function mediaTemplate(data) {
-    const { id, photographerId, title, image, video, likes, date, price } = data;
+    const { id, photographerId, title, image, video, likes, date } = data;
 
     // Récupérer le nom du dossier du photographe
     const photographerFolder = photographerFolderMap[photographerId] || photographerId;

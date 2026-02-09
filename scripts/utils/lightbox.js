@@ -1,3 +1,5 @@
+/* global photographerFolderMap, normalizeFileName */
+/* exported openLightbox, closeLightbox, previousMedia, nextMedia */
 // Gestion de la Lightbox pour les médias (images et vidéos)
 
 let currentMediaIndex = 0;

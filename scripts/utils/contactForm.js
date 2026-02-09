@@ -1,3 +1,4 @@
+/* exported displayModal */
 // Gestion de la modale de contact - Réutilisable
 
 // Variable pour stocker le nom du destinataire
@@ -164,8 +165,7 @@ function handleFormSubmit(e) {
         data.recipient = contactRecipientName;
     }
     
-    // Log des données (pour debug)
-    console.log('Données du formulaire:', data);
+    // Données du formulaire disponibles ici pour envoi serveur
     
     // Ici vous pouvez ajouter la logique pour envoyer les données à un serveur
     // Par exemple: fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) })

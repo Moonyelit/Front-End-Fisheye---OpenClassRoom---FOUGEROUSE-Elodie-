@@ -1,3 +1,4 @@
+/* global mediaTemplate, openLightbox */
 // Récupération de l'ID du photographe depuis l'URL
 function getPhotographerId() {
     const params = new URLSearchParams(window.location.search);
@@ -7,7 +8,8 @@ function getPhotographerId() {
 // Variable globale pour stocker les médias (utilisée par la lightbox)
 let currentMediaList = [];
 
-// Variable globale pour stocker le photographe actuel
+// Variable globale pour le photographe actuel (utilisée dans onclick du template HTML)
+// eslint-disable-next-line no-unused-vars -- référencé dans innerHTML/onclick
 let currentPhotographer = null;
 
 // Récupération des données
@@ -30,7 +32,7 @@ function displayPhotographerHeader(photographer) {
     const headerSection = document.getElementById("photograph-header");
     if (!headerSection) return;
 
-    const { name, city, country, tagline, price, portrait } = photographer;
+    const { name, city, country, tagline, portrait } = photographer;
     // Les portraits sont dans assets/photographers/
     const picture = `assets/photographers/${portrait}`;
 

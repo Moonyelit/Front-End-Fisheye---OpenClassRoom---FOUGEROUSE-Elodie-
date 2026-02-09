@@ -1,0 +1,14 @@
+# Dépendances (à tous les niveaux)
+node_modules/
+**/node_modules/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Dossier Mac (fichiers ressource)
+__MACOSX/
+
+# Logs et cache
+*.log
+.npm
