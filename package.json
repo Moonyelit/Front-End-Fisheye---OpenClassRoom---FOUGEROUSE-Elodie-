@@ -1,0 +1,13 @@
+{
+  "name": "fisheye-photographers",
+  "version": "1.0.0",
+  "description": "Site accessible pour une plateforme de photographes - OpenClassroom P6",
+  "private": true,
+  "scripts": {
+    "lint": "eslint scripts --ext .js",
+    "lint:fix": "eslint scripts --ext .js --fix"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  }
+}

@@ -14,10 +14,10 @@ function photographerTemplate(data) {
         link.className = "card-link";
         // Le nom accessible est fourni par le h2 à l'intérieur du lien
         
-        // Image circulaire - alt vide car le nom est dans le h2 (évite la redondance)
+        // Image circulaire - alt = nom du photographe (requis WCAG)
         const img = document.createElement('img');
         img.setAttribute("src", picture);
-        img.setAttribute("alt", ""); // Image décorative, le nom est dans le h2
+        img.setAttribute("alt", name);
         img.className = "photographer-portrait";
         
         // Nom (photographer-name) - fournit le nom accessible au lien
