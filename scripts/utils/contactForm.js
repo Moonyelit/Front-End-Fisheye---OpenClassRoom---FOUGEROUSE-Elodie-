@@ -165,11 +165,15 @@ function handleFormSubmit(e) {
         data.recipient = contactRecipientName;
     }
     
-    // Données du formulaire disponibles ici pour envoi serveur
-    
-    // Ici vous pouvez ajouter la logique pour envoyer les données à un serveur
-    // Par exemple: fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) })
-    
+    // Affichage des champs dans la console
+    console.log('Contact form submitted:', {
+        prénom: data.firstname,
+        nom: data.lastname,
+        email: data.email,
+        message: data.message,
+        destinataire: data.recipient || ''
+    });
+
     // Message de confirmation
     showConfirmationMessage();
     

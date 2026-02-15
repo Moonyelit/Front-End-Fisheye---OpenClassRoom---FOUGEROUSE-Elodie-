@@ -6,6 +6,8 @@
                 throw new Error(`Erreur HTTP: ${response.status}`);
             }
             const data = await response.json();
+            // Afficher les données récupérées dans la console
+            console.log('Données photographes (fetch):', data);
             return data;
         } catch (error) {
             console.error("Erreur lors de la récupération des photographes:", error);
