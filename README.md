@@ -112,6 +112,4 @@ La page photographe récupère l’`id` dans l’URL (`?id=...`) et filtre les m
 
 ---
 
-## Auteur
-
-Projet réalisé dans le cadre du **Projet 6 - Créez un site accessible pour une plateforme de photographes - Formation Développeur d'application JavaScript React**, OpenClassroom.
+## AuteurProjet réalisé dans le cadre du **Projet 6 - Créez un site accessible pour une plateforme de photographes - Formation Développeur d'application JavaScript React**, OpenClassroom.

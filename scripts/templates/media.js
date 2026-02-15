@@ -1,4 +1,4 @@
-/* global updateTotalLikes */
+/* global updateTotalLikes, createMediaContent */
 /* exported mediaTemplate, photographerFolderMap, normalizeFileName */
 // Mapping entre les IDs des photographes et les noms des dossiers dans assets/photos
 const photographerFolderMap = {
@@ -43,39 +43,19 @@ function mediaTemplate(data) {
         // Nom accessible = titre du média
         link.setAttribute("aria-label", `${title}, closeup view`);
 
-        // Conteneur pour l'image ou la vidéo
+        // Conteneur pour l'image ou la vidéo (factory pattern)
         const mediaContainer = document.createElement('div');
         mediaContainer.className = "media-container";
 
-        if (image) {
-            const img = document.createElement('img');
-            const normalizedFileName = normalizeFileName(image);
-            img.src = `assets/photos/${photographerFolder}/${normalizedFileName}`;
-            // L'alt de l'image est le titre pour l'accessibilité
-            img.alt = title;
-            img.className = "media-image";
-            mediaContainer.appendChild(img);
-        } else if (video) {
-            const videoElement = document.createElement('video');
-            const normalizedFileName = normalizeFileName(video);
-            videoElement.src = `assets/photos/${photographerFolder}/${normalizedFileName}`;
-            videoElement.className = "media-video";
-            videoElement.setAttribute("aria-label", title);
-            videoElement.setAttribute("title", title);
-            mediaContainer.appendChild(videoElement);
-            
-            // Ajouter l'icône play pour indiquer que c'est une vidéo
-            const playIcon = document.createElement('div');
-            playIcon.className = "video-play-icon";
-            playIcon.innerHTML = `
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="30" cy="30" r="30" fill="rgba(255, 255, 255, 0.8)"/>
-                    <path d="M24 18L44 30L24 42V18Z" fill="#901C1C"/>
-                </svg>
-            `;
-            playIcon.setAttribute("aria-hidden", "true");
-            mediaContainer.appendChild(playIcon);
-        }
+        const mediaType = image ? 'image' : 'video';
+        const fileName = normalizeFileName(image || video);
+        const mediaContent = createMediaContent({
+            type: mediaType,
+            title,
+            photographerFolder,
+            fileName
+        });
+        mediaContainer.appendChild(mediaContent);
 
         link.appendChild(mediaContainer);
         article.appendChild(link);

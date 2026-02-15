@@ -8,15 +8,15 @@ function getPhotographerId() {
 // Variable globale pour stocker les médias (utilisée par la lightbox)
 let currentMediaList = [];
 
-// Variable globale pour le photographe actuel (utilisée dans onclick du template HTML)
-// eslint-disable-next-line no-unused-vars -- référencé dans innerHTML/onclick
+// Variable globale pour le bouton Contact (onclick dans displayPhotographerHeader)
+// eslint-disable-next-line no-unused-vars -- utilisé dans l'attribut onclick du template
 let currentPhotographer = null;
 
 // Récupération des données
 async function getPhotographers() {
     try {
         const response = await fetch("data/photographers.json");
-        if (!response.ok) {
+        if (!response.ok) { 
             throw new Error(`Erreur HTTP: ${response.status}`);
         }
         const data = await response.json();
@@ -119,8 +119,6 @@ function displayStickyFooter(photographer) {
     const footer = document.getElementById("sticky-footer");
     if (!footer) return;
 
-    const { price } = photographer;
-    
     footer.innerHTML = `
         <div class="total-likes">
             <span class="total-likes-count" aria-live="polite">0</span>
@@ -130,7 +128,7 @@ function displayStickyFooter(photographer) {
                 </svg>
             </span>
         </div>
-        <div class="photographer-price-footer">${price}€ / jour</div>
+        <div class="photographer-price-footer">${photographer.price}€ / jour</div>
     `;
 }
 
